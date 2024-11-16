@@ -43,7 +43,16 @@ def lambda_handler(event, context):
     #        # "location": ip.text.replace("\n", "")
     #    }),
     #}
-    
+
+    try:
+        # Extract the 'prompt' from the POST request body
+        body = json.loads(event.get("body", "{}"))
+        prompt = body.get("prompt", "")
+        if not prompt:
+            return {
+                "statusCode": 400,
+                "body": json.dumps({"error": "Missing 'prompt' in request body"})
+            }
     
     # Set up the AWS clients
     
