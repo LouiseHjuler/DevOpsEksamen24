@@ -43,17 +43,17 @@ def lambda_handler(event, context):
     #        # "location": ip.text.replace("\n", "")
     #    }),
     #}
-
-    try:
-        # Extract the 'prompt' from the POST request body
-        body = json.loads(event.get("body", "{}"))
-        prompt = body.get("prompt", "")
-        if not prompt:
-            return {
-                "statusCode": 400,
-                "body": json.dumps({"error": "Missing 'prompt' in request body"})
-            }
     
+    # Extract the 'prompt' from the POST request body
+    print(event)
+    prompt = event["prompt"]
+
+    if not prompt:
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"error": "Missing 'prompt' in request body"})
+        }
+            
     # Set up the AWS clients
     
     bedrock_client = boto3.client("bedrock-runtime", region_name="us-east-1")
@@ -62,13 +62,12 @@ def lambda_handler(event, context):
     # Define the model ID and S3 bucket name (replace with your actual bucket name)
     model_id = "amazon.titan-image-generator-v1"
     bucket_name = "pgr301-couch-explorers"
-    folder_name = "24/"
     
     # Frank; Important; Change this prompt to something else before the presentation with the investors!
-    prompt = "Investors, with circus hats, giving money to developers with large smiles"
+    #prompt = "Investors, with circus hats, giving money to developers with large smiles"
     
     seed = random.randint(0, 2147483647)
-    s3_image_path = f"titan_{seed}.png"
+    s3_image_path = f"24/titan_{seed}.png"
     
     native_request = {
         "taskType": "TEXT_IMAGE",
@@ -95,7 +94,7 @@ def lambda_handler(event, context):
     
     gen_uri = s3_client.generate_presigned_url(
         "get_object",
-        Params={"Bucket" : bucket_name, "Folder" : folder_name, "Key" : s3_image_path})
+        Params={"Bucket" : bucket_name, "Key" : s3_image_path})
     
     return {
         "statusCode" : 200,

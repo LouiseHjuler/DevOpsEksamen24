@@ -29,6 +29,11 @@ Resources:
           Properties:
             Path: /imageGen
             Method: get
+        ImageGen: #added post method
+          Type: Api
+          Properties:
+            Path: /imageGen
+            Method: post
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
