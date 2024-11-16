@@ -53,12 +53,13 @@ def lambda_handler(event, context):
     # Define the model ID and S3 bucket name (replace with your actual bucket name)
     model_id = "amazon.titan-image-generator-v1"
     bucket_name = "pgr301-couch-explorers"
+    folder_name = "24/"
     
     # Frank; Important; Change this prompt to something else before the presentation with the investors!
     prompt = "Investors, with circus hats, giving money to developers with large smiles"
     
     seed = random.randint(0, 2147483647)
-    s3_image_path = f"24/titan_{seed}.png"
+    s3_image_path = f"titan_{seed}.png"
     
     native_request = {
         "taskType": "TEXT_IMAGE",
@@ -85,7 +86,7 @@ def lambda_handler(event, context):
     
     gen_uri = s3_client.generate_presigned_url(
         "get_object",
-        Params={"Bucket" : bucket_name, "Key" : s3_image_path})
+        Params={"Bucket" : bucket_name, "Folder" : folder_name, "Key" : s3_image_path})
     
     return {
         "statusCode" : 200,
