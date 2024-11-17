@@ -1,20 +1,12 @@
 {
-  "body": "{\"message\": \"hello world\"}",
-  "resource": "/hello",
-  "path": "/hello",
-  "httpMethod": "GET",
+  "resource": "/imageGen",
+  "path": "/imageGen",
+  "httpMethod": "POST",
   "isBase64Encoded": false,
-  "queryStringParameters": {
-    "foo": "bar"
-  },
-  "pathParameters": {
-    "proxy": "/path/to/resource"
-  },
-  "stageVariables": {
-    "baz": "qux"
-  },
+  "pathParameters": null,
+  "stageVariables": null,
   "headers": {
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Accept": "text/html,application/xhtml+xml, application/json, application/xml;q=0.9,image/webp,*/*;q=0.8",
     "Accept-Encoding": "gzip, deflate, sdch",
     "Accept-Language": "en-US,en;q=0.8",
     "Cache-Control": "max-age=0",
@@ -53,8 +45,8 @@
       "userAgent": "Custom User Agent String",
       "user": null
     },
-    "path": "/prod/hello",
-    "resourcePath": "/hello",
+    "path": "/prod/imageGen",
+    "resourcePath": "/imageGen",
     "httpMethod": "POST",
     "apiId": "1234567890",
     "protocol": "HTTP/1.1"
