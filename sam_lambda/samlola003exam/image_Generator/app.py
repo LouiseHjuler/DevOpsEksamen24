@@ -31,22 +31,6 @@ def lambda_handler(event, context):
 
         Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
     """
-
-    # try:
-    #     ip = requests.get("http://checkip.amazonaws.com/")
-    # except requests.RequestException as e:
-    #     # Send some context about this error to Lambda Logs
-    #     print(e)
-
-    #     raise e
-
-    #return {
-    #    "statusCode": 200,
-    #    "body": json.dumps({
-    #        "message": "hello world",
-    #        # "location": ip.text.replace("\n", "")
-    #    }),
-    #}
     
     print(event)
     # Extract the 'prompt' from the POST request body
@@ -60,7 +44,6 @@ def lambda_handler(event, context):
 
         # Extract the 'prompt' from the parsed body
         prompt = body.get("prompt", None)
-        #prompt = event.get("prompt", None)
         
         # Check if the 'prompt' is provided in the body
         if not prompt:
