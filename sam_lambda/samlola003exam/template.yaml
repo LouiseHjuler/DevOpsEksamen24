@@ -14,7 +14,33 @@ Globals:
     # You can add LoggingConfig parameters such as the Logformat, Log Group, and SystemLogLevel or ApplicationLogLevel. Learn more here https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-loggingconfig.
     LoggingConfig:
       LogFormat: JSON
+
 Resources:
+  ImageGenFunctionRole:
+    Type: AWS::IAM::Role
+    Properties: 
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: LambdaExecutionPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "s3:PutObject"
+                  - "s3:GetObject"
+                  - "s3:ListBucket"
+                  - "bedrock:InvokeModel"
+                Resource:
+                  - "arn:aws:s3:::pgr301-couch-explorers/*"  # Bucket name
+                  - "arn:aws:bedrock:us-east-1::model/amazon.titan-image-generator-v1"  #Bedrockarn Potential error 
+
   ImageGenFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
@@ -23,13 +49,14 @@ Resources:
       Runtime: python3.8
       Architectures:
       - x86_64
+      Role: !GetAtt ImageGenFunctionRole.Arn #IAM role
       Events:
-        ImageGen:
+        ImageGenGet:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /imageGen
             Method: get
-        ImageGen: #added post method
+        ImageGenPost: #added post method
           Type: Api
           Properties:
             Path: /imageGen
@@ -46,5 +73,5 @@ Outputs:
     Description: Image Generator Lambda Function ARN
     Value: !GetAtt ImageGenFunction.Arn
   ImageGenFunctionIamRole:
-    Description: Implicit IAM Role created for Hello World function
-    Value: !GetAtt ImageGenFunction.Arn
+    Description: Implicit IAM Role created for Image Generatorfunction
+    Value: !GetAtt ImageGenFunctionRole.Arn
