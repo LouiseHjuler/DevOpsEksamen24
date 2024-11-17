@@ -6,7 +6,7 @@
 
 ###LEVERANCER
 
-** oppgave 1 
+**oppgave 1 
 
 *  Levering av lenke til test i postman
     [https://vb9e9pvt7i.execute-api.eu-west-1.amazonaws.com/Prod/imageGen/]
