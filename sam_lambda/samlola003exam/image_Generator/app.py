@@ -44,10 +44,6 @@ def lambda_handler(event, context):
 
         # Extract the 'prompt' from the parsed body
         prompt = body.get("prompt", None)
-<<<<<<< HEAD
-=======
-        #prompt = event.get("prompt", None)
->>>>>>> origin
         
         # Check if the 'prompt' is provided in the body
         if not prompt:

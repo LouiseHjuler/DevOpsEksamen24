@@ -3,6 +3,15 @@
 
 <img width="1181" alt="image" src="img/header.png">
 
+
+###LEVERANCER
+
+** oppgave 1 
+
+*  Levering av lenke til test i postman
+    [https://vb9e9pvt7i.execute-api.eu-west-1.amazonaws.com/Prod/imageGen/]
+    testet med {"prompt" : "prompttekst"}
+
 Som nyansatt i Couch Explorers – en spennende startup som gir brukerne muligheten til å reise verden rundt fra komforten av egen sofa – er du med på å utvikle fremtidens reiseløsning! Ved hjelp av kunstig intelligens genererer tjenesten imponerende bilder av kjente landemerker og unike reisemål fra alle verdenshjørner. 
 
 Disse bildene kan brukerne dele på sosiale medier som minner fra deres "reise", helt uten å forlate hjemmet! I fremtidige versjoner av tjenesten vil KI kunne trenes på bilder av brukerne selv, slik at vi kan lage mer realistiske selfies og kanskje til og med emulere retrofotografier som analog film og polaroid – for den ultimate lo-fi reisedokumentasjonen.
