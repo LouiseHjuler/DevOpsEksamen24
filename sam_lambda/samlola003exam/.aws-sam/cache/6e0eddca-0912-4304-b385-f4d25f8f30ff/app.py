@@ -3,12 +3,21 @@ import boto3
 import json
 import random
 import logging
+import os
+
+# import requests
+
 
 logger= logging.getLogger()
 logger.setLevel(logging.INFO)
 
-# import requests
-
+#get correct bucket name from yaml template
+def get_s3_bucket_name():
+    bucket_name = os.environ.get("CouchExplorerBucket")
+    if not bucket_name:
+        raise ValueError("Error: Bucket name not found")
+    return bucket_name
+    
 
 def lambda_handler(event, context):
     """Sample pure Lambda function
@@ -59,13 +68,12 @@ def lambda_handler(event, context):
         logger.info("Received prompt: %s", prompt)
                 
         # Set up the AWS clients
-        
         bedrock_client = boto3.client("bedrock-runtime", region_name="us-east-1")
         s3_client = boto3.client("s3")
         
-        # Define the model ID and S3 bucket name (replace with your actual bucket name)
+        # Define the model ID and get S3 bucket name from yaml
         model_id = "amazon.titan-image-generator-v1"
-        bucket_name = "pgr301-couch-explorers"
+        bucket_name = get_s3_bucket_name()
         
         # Frank; Important; Change this prompt to something else before the presentation with the investors!
         #prompt = "Investors, with circus hats, giving money to developers with large smiles"

@@ -8,7 +8,7 @@ Description: >
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 3
+    Timeout: 30
     MemorySize: 128
 
     # You can add LoggingConfig parameters such as the Logformat, Log Group, and SystemLogLevel or ApplicationLogLevel. Learn more here https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-loggingconfig.
@@ -61,6 +61,9 @@ Resources:
           Properties:
             Path: /imageGen
             Method: post
+      Environment:
+        Variables:
+          CouchExplorerBucket: "pgr301-couch-explorers"
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
