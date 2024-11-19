@@ -5,7 +5,7 @@ on:
 
 defaults:
   run:
-    working-directory: ./sam_lambda
+    working-directory: ./samlola003Exam
 
 jobs:
   build-deploy:
