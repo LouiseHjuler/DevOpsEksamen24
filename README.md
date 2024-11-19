@@ -8,9 +8,13 @@
 
 oppgave 1 
 
-*  Levering av lenke til test i postman
+A) Levering av lenke til test i postman
     [https://vb9e9pvt7i.execute-api.eu-west-1.amazonaws.com/Prod/imageGen/]
-    testet med {"prompt" : "prompttekst"}
+    testet med {"prompt" : "prompttekst"} body
+B) Levering av lenke til vellykket workflow
+    [https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11921441935]
+    
+oppgave 2
 
 Som nyansatt i Couch Explorers – en spennende startup som gir brukerne muligheten til å reise verden rundt fra komforten av egen sofa – er du med på å utvikle fremtidens reiseløsning! Ved hjelp av kunstig intelligens genererer tjenesten imponerende bilder av kjente landemerker og unike reisemål fra alle verdenshjørner. 
 
