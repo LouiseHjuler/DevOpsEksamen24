@@ -5,7 +5,7 @@ on:
 
 defaults:
   run:
-    working-directory: ./DevOpsEksamen24/sam_lambda
+    working-directory: ./sam_lambda/samlola003exam/
 
 jobs:
   build-deploy:
@@ -20,4 +20,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-1
       - run: sam build --use-container
-      - run: sam deploy --template-file ./samlola003exam/template.yaml
+      - run: sam deploy --template-file ./template.yaml
