@@ -3,4 +3,4 @@
 /workspace.xml
 
 #terraform
-**/.terraform/*
+/infra/.terraform/
