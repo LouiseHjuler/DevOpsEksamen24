@@ -37,7 +37,7 @@ resource "aws_api_gateway_integration" "image_gen_get_integration" {
   http_method = aws_api_gateway_method.image_gen_get.http_method
   integration_http_method = "GET"
   type = "AWS_PROXY"
-  uri  = aws_lambda_function.image_gen_lambda.invoke_arn
+  uri  = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${aws_lambda_function.image_gen_lambda.arn}/invocations"
 }
 
 resource "aws_api_gateway_integration" "image_gen_post_integration" {
@@ -46,7 +46,7 @@ resource "aws_api_gateway_integration" "image_gen_post_integration" {
   http_method = aws_api_gateway_method.image_gen_post.http_method
   integration_http_method = "POST"
   type = "AWS_PROXY"
-  uri  = aws_lambda_function.image_gen_lambda.invoke_arn
+  uri  = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${aws_lambda_function.image_gen_lambda.arn}/invocations"
 }
 
 # Lambda permissions for API Gateway to invoke Lambda
