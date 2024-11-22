@@ -82,6 +82,14 @@ resource "aws_lambda_permission" "allow_lambda_url"{
     function_url_auth_type  = aws_lambda_function_url.image_gen_lambda_url.authorization_type
 }
 
+#allow gateway permissions
+resource "aws_lambda_permission" "api_gateway_lambda_permission" {
+  statement_id  = "AllowApiGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.image_gen_lambda.function_name
+  principal     = "apigateway.amazonaws.com"
+}
+
 #create zip from code
 data "archive_file" "lambda_zip"{
     type        = "zip"
