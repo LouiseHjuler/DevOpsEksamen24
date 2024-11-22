@@ -45,11 +45,6 @@ resource "aws_iam_role_policy" "lambda_image_gen_policy" {
     })
 }
 
-#resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
-#    role        = aws_iam_role.lambda_tf_role.name
-#    policy_arn  = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-#}
-
 #lambda to be used 
 resource "aws_lambda_function" "image_gen_lambda" {
     function_name   = "${var.prefix}_image_gen_lambda"

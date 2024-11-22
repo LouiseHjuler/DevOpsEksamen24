@@ -49,6 +49,15 @@ resource "aws_api_gateway_integration" "image_gen_post_integration" {
   uri  = aws_lambda_function.image_gen_lambda.invoke_arn
 }
 
+# Lambda permissions for API Gateway to invoke Lambda
+resource "aws_lambda_permission" "allow_api_gateway_invoke" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.image_gen_lambda.arn
+  principal     = "apigateway.amazonaws.com"
+}
+
+#Deployment of gateway
 resource "aws_api_gateway_deployment" "image_gen_deployment" {
   depends_on = [
     aws_api_gateway_integration.image_gen_get_integration,
@@ -56,14 +65,6 @@ resource "aws_api_gateway_deployment" "image_gen_deployment" {
   ]
   rest_api_id = aws_api_gateway_rest_api.image_gen_api.id
   stage_name  = "prod"
-}
-
-# Lambda permissions for API Gateway to invoke Lambda
-resource "aws_lambda_permission" "allow_api_gateway_invoke" {
-  statement_id  = "AllowAPIGatewayInvoke"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.image_gen_lambda.arn
-  principal     = "apigateway.amazonaws.com"
 }
 
 output "api_gateway_url" {
