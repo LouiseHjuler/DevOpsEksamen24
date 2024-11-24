@@ -14,5 +14,12 @@ oppgave 2
     [https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11998884373]
 - sqs queue 
     [https://sqs.eu-west-1.amazonaws.com/244530008913/kandidat24_sqs_queue]
+    
+    Har ikke selv lykkes å teste via sqs eller postman. Både lambda og sqs er sat opp og forbunnet, men får feil ved kjøring. 
+    bla får jeg fei mld fra amazon : 
+    "[ERROR] ValidationException: An error occurred (ValidationException) when calling the InvokeModel operation: 
+    This request has been blocked by our content filters. 
+    Our filters automatically flagged this prompt because it may conflict our AUP or AWS Responsible AI Policy."
 
 Oppgave 3
+
