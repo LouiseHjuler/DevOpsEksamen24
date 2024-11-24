@@ -23,3 +23,13 @@ oppgave 2
 
 Oppgave 3
 
+- Tagge stragegi
+    Tagger med github version count, da dette gir oversigt over hvilken iteration av koden som er benyttet, basert på antall commits via github.
+    Denne kan utvites med semantic versioning om det er behov, men for hvor simpel koden er føler jeg dette blir overkill. 
+    Mulig å ligge til senere om nødvedig.
+    Samtidig ligger jeg opp en versjon med latest taggen, sådan at seneste image er lett å finne for de som skal benytte imaget.
+
+- Docker container image : 
+    Name: louisehjuler/23imagegen
+    [https://hub.docker.com/repository/docker/louisehjuler/23imagegen/general]
+    SQS = [https://sqs.eu-west-1.amazonaws.com/244530008913/kandidat24_sqs_queue]
