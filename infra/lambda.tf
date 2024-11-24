@@ -52,7 +52,10 @@ resource "aws_iam_role_policy" "lambda_image_gen_policy" {
                      "sqs:DeleteMessage",
                      "sqs:GetQueueAttributes",
                      "sqs:SendMessage"]
-            "Resource": "*"
+            "Resource": ["arn:aws:s3:::pgr301-couch-explorers/*",
+                        "arn:aws:bedrock:us-east-1::model/amazon.titan-image-generator-v1",
+                        "*"]
+                        #obvi the * is redundant here in the end but but. 
             }
         ]
     })

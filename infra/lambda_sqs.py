@@ -13,6 +13,17 @@ MODEL_ID = "amazon.titan-image-generator-v1"
 BUCKET_NAME =  os.environ["BUCKET_NAME"]
 
 def lambda_handler(event, context):
+    print(f"Received event: {json.dumps(event)}")
+    
+    #array for printing our uri's after each record event
+    uri_array = []
+    
+    if "Records" not in event:
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"error": "Event does not contain 'Records'"})
+        }
+        
     # Loop through all SQS records in the event
     for record in event["Records"]:
         # Extract the SQS message body
@@ -46,7 +57,18 @@ def lambda_handler(event, context):
         # Upload the image to S3
         s3_client.put_object(Bucket=BUCKET_NAME, Key=s3_image_path, Body=image_data)
 
+        gen_uri = s3_client.generate_presigned_url(
+            "get_object",
+            Params={"Bucket" : BUCKET_NAME, "Key" : s3_image_path}
+        )
+        uri_array.append(gen_uri)
+        
     return {
-        "statusCode": 200,
-        "body": json.dumps("")
+        "statusCode" : 200,
+        "body" : json.dumps({
+            "image_URIs" : uri_array 
+        }),
+        "headers" : {
+            "Content-Type": "application/json"
+        }
     }
