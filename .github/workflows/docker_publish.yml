@@ -37,8 +37,7 @@ jobs:
         id: push
         uses: docker/build-push-action@v4
         with:
-          context: .
-          file: /DevOpsEksamen24/java_sqs_client/Dockerfile
+          file: ./Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
