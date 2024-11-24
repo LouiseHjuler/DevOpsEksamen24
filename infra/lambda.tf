@@ -3,6 +3,15 @@ variable "prefix" {
     description = "Prefix for all resource names"
 }
 
+resource "aws_s3_bucket" "targetBucket" {
+    bucket  = "pgr301-couch-explorer-bucket"
+    
+    tags    = {
+        Name        = "TargetBucket"
+        Environment = "Production"
+    }
+}
+
 #IAM role
 resource "aws_iam_role" "lambda_tf_role"{
     assume_role_policy = jsonencode({
@@ -38,7 +47,11 @@ resource "aws_iam_role_policy" "lambda_image_gen_policy" {
                      "logs:CreateLogStream",
                      "logs:PutLogEvents",
                      "logs:DescribeLogStreams",
-                     "iam:UpdateFunctionConfiguration"]
+                     "iam:UpdateFunctionConfiguration",
+                     "sqs:ReceiveMessage",
+                     "sqs:DeleteMessage",
+                     "sqs:GetQueueAttributes",
+                     "sqs:SendMessage"]
             "Resource": "*"
             }
         ]
@@ -56,11 +69,12 @@ resource "aws_lambda_function" "image_gen_lambda" {
     
     environment{
         variables = {
-            LOG_LEVEL = "DEBUG"
+            LOG_LEVEL   = "DEBUG"
+            #Destination bucket!
+            BUCKET_NAME = aws_s3_bucket.targetBucket.bucket
         }
     }
 }
-
 
 #lambda fun url resource 
 resource "aws_lambda_function_url" "image_gen_lambda_url"{
@@ -75,14 +89,6 @@ resource "aws_lambda_permission" "allow_lambda_url"{
     function_name           = aws_lambda_function.image_gen_lambda.arn
     principal               = "*"
     function_url_auth_type  = aws_lambda_function_url.image_gen_lambda_url.authorization_type
-}
-
-#allow gateway permissions
-resource "aws_lambda_permission" "api_gateway_lambda_permission" {
-  statement_id  = "AllowApiGatewayInvoke"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.image_gen_lambda.function_name
-  principal     = "apigateway.amazonaws.com"
 }
 
 #create zip from code
