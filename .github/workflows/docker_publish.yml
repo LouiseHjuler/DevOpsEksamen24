@@ -16,8 +16,13 @@ jobs:
       packages: write
       id-token: write
     steps:
-      # Step 1: Checkout code
+      # Step 1: Checkout code + git version 
       - uses: actions/checkout@v3
+      - name: Get next version number
+        id: version
+        run: |
+          VERSION=$(git rev-list --count HEAD)  # Use commit count as version
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       # Step 2: Login to Docker Hub
       - uses: docker/login-action@v2
@@ -40,5 +45,6 @@ jobs:
           context: ./java_sqs_client
           file: ./java_sqs_client/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: |
+            louisehjuler/23imagegen:${{env.VERSION}}
+            louisehjuler/23imagegen:latest
