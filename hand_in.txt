@@ -1,15 +1,18 @@
-oppgave 1 
+Oppgave 1
 
 A) Levering av lenke til test i postman
     [https://vb9e9pvt7i.execute-api.eu-west-1.amazonaws.com/Prod/imageGen/]
-    testet med {"prompt" : "prompttekst"} body
+    testet med {"prompt" : "prompttekst"} body i postman
 B) Levering av lenke til vellykket workflow
     [https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11921441935]
     
 oppgave 2
 
 - workflow til main med apply 
-    https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11998795130
+    [https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11998849255]
 - workflow til alt som ikke er main med plan
-    https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11998673402
-    
+    [https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11998884373]
+- sqs queue 
+    [https://sqs.eu-west-1.amazonaws.com/244530008913/kandidat24_sqs_queue]
+
+Oppgave 3
