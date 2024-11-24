@@ -16,6 +16,9 @@ jobs:
       packages: write
       id-token: write
     steps:
+      #before we start
+      - name: Clear Docker cache
+        run: docker builder prune -af
       # Step 1: Checkout code
       - uses: actions/checkout@v3
 
@@ -37,8 +40,8 @@ jobs:
         id: push
         uses: docker/build-push-action@v4
         with:
-          context: .
-          file: ./Dockerfile
+          context: ./java_sqs_client
+          file: ./java_sqs_client/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
