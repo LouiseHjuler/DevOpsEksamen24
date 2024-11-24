@@ -16,9 +16,6 @@ jobs:
       packages: write
       id-token: write
     steps:
-      #before we start
-      - name: Clear Docker cache
-        run: docker builder prune -af
       # Step 1: Checkout code
       - uses: actions/checkout@v3
 
