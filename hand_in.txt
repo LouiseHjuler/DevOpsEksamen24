@@ -1,35 +1,15 @@
-oppgave 1
+oppgave 1 
 
-
+A) Levering av lenke til test i postman
+    [https://vb9e9pvt7i.execute-api.eu-west-1.amazonaws.com/Prod/imageGen/]
+    testet med {"prompt" : "prompttekst"} body
+B) Levering av lenke til vellykket workflow
+    [https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11921441935]
+    
 oppgave 2
 
-- Much terraform has been set up, and both lambda and sqs are deployed. however, the lambda is having issues, and is currently spitting out this error when prompted: 
-        [ERROR] ValidationException: An error occurred (ValidationException) when calling the InvokeModel operation: This request has been blocked by our content filters. Our filters automatically flagged this prompt because it may conflict our AUP or AWS Responsible AI Policy. Please adjust your text prompt to submit a new request.
-        Traceback (most recent call last):
-        File "/var/task/lambda_sqs.py", line 48, in lambda_handler
-        response = bedrock_client.invoke_model(
-        File "/var/runtime/botocore/client.py", line 565, in _api_call
-        return self._make_api_call(operation_name, kwargs)
-        File "/var/runtime/botocore/client.py", line 1021, in _make_api_call
-        raise error_class(parsed_response, operation_name)
-
-    this is when prompted with following directly in the AWS lambda dashboard :
-            
-            {
-          "Records": [
-            {
-              "messageId": "1",
-              "receiptHandle": "MessageReceiptHandle",
-              "body": "Create a realistic image of me standing on the edge of a cliff with dramatic, snow-capped mountains stretching out behind me.",
-              "attributes": {},
-              "messageAttributes": {},
-              "md5OfBody": "string",
-              "eventSource": "aws:sqs",
-              "eventSourceARN": "arn:aws:sqs:us-east-1:123456789012:kandidat24_sqs_queue",
-              "awsRegion": "us-east-1"
-            }
-          ]
-        }
+- workflow til main med apply 
+    https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11998795130
+- workflow til alt som ikke er main med plan
+    https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11998673402
     
-
-
