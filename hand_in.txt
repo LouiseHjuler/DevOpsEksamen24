@@ -9,7 +9,7 @@ B) Levering av lenke til vellykket workflow
 oppgave 2
 
 - workflow til main med apply 
-    https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11998795130
+    [https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11998849255]
 - workflow til alt som ikke er main med plan
-    https://github.com/LouiseHjuler/DevOpsEksamen24/actions/runs/11998673402
+    
     
