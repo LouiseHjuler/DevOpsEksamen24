@@ -22,3 +22,4 @@ jobs:
       - run: terraform init
       - run: terraform validate
       - run: terraform  plan -var "prefix=kandidat_24"
+      - run: terraform apply --auto-approve -var "prefix=kandidat_24"
