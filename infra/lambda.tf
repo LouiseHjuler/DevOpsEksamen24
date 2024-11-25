@@ -1,8 +1,3 @@
-variable "prefix" {
-    type        = string
-    description = "Prefix for all resource names"
-}
-
 #IAM role
 resource "aws_iam_role" "lambda_tf_role"{
     assume_role_policy = jsonencode({

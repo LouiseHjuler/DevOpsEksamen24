@@ -4,8 +4,8 @@ variable "region" {
 }
 
 variable "prefix" {
-  description = "Prefix to prepend to resource names"
-  type        = string
+    type        = string
+    description = "Prefix for all resource names"
 }
 
 variable "BUCKET_NAME" {
@@ -22,6 +22,6 @@ variable "ALARM_MAIL" {
 
 variable "threshold" {
   description = "Threshold for setting off alarm in seconds"
-  type        = int
+  type        = number
   default     = 5
 }

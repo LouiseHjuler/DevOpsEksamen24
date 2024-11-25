@@ -33,3 +33,9 @@ Oppgave 3
     Name: louisehjuler/23imagegen
     [https://hub.docker.com/repository/docker/louisehjuler/23imagegen/general]
     SQS = [https://sqs.eu-west-1.amazonaws.com/244530008913/kandidat24_sqs_queue]
+    
+oppgave 4 
+
+- Da oppgave 2 ikke fungerer opptimalt, nedprioriteres denne oppgave til fordel for oppgave 5. 
+
+oppgave 5
