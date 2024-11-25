@@ -24,7 +24,6 @@ data "aws_iam_policy_document" "policy" {
             "sqs:DeleteMessage",
             "sqs:GetQueueAttributes"
         ]
-        
         resources = [
             aws_sqs_queue.queue.arn
         ]
@@ -36,10 +35,10 @@ resource "aws_sqs_queue_policy" "policy" {
     policy      = data.aws_iam_policy_document.policy.json
 }
 
-#sqs resource
-resource "aws_lambda_event_source_mapping" "even_source_mapping" {
+#sqs resource mapping / trigger
+resource "aws_lambda_event_source_mapping" "event_source_mapping" {
     event_source_arn    = aws_sqs_queue.queue.arn
     enabled             = true
     function_name       = aws_lambda_function.image_gen_lambda.arn
-    batch_size          = 1
+    batch_size          = 5
 }

@@ -3,15 +3,6 @@ variable "prefix" {
     description = "Prefix for all resource names"
 }
 
-resource "aws_s3_bucket" "targetBucket" {
-    bucket  = "pgr301-couch-explorer-bucket"
-    
-    tags    = {
-        Name        = "TargetBucket"
-        Environment = "Production"
-    }
-}
-
 #IAM role
 resource "aws_iam_role" "lambda_tf_role"{
     assume_role_policy = jsonencode({
@@ -42,7 +33,8 @@ resource "aws_iam_role_policy" "lambda_image_gen_policy" {
             "Action":["s3:PutObject",
                      "s3:GetObject",
                      "s3:ListBucket",
-                     "bedrock:InvokeModel",
+                     "s3:*",
+                     "bedrock:*",
                      "logs:CreateLogGroup",
                      "logs:CreateLogStream",
                      "logs:PutLogEvents",
@@ -73,8 +65,6 @@ resource "aws_lambda_function" "image_gen_lambda" {
     environment{
         variables = {
             LOG_LEVEL   = "DEBUG"
-            #Destination bucket!
-            BUCKET_NAME = aws_s3_bucket.targetBucket.bucket
         }
     }
 }
